@@ -16,10 +16,10 @@ function Login({ users }) {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-
+                alert("Login Successfully")
                 if (user.email == 'teacher@gmail.com') {
                     navigate({
-                        pathname: '/upload', search: createSearchParams({ id: user.email }).toString()
+                        pathname: '/admin', search: createSearchParams({ id: user.email }).toString()
                     })
                 } else {
                     navigate({ pathname: '/main', search: createSearchParams({ id: user.email }).toString() })

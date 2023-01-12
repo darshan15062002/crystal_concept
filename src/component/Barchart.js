@@ -1,24 +1,50 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
-import { data } from 'autoprefixer'
+
+import axios from 'axios'
+
+
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
-function Barchart() {
+
+function Barchart({ marks, date, subject }) {
+
+
+
+
+
+
+
+
     const data = {
-        labels: ['mon', 'tue', 'wed', 'ac', 'ccasca', 'cddda', 'cadcd', 'dvcdsds', 'dsvds'],
+        labels: [...date],
         datasets: [{
             label: 'Marks',
-            data: [3, 6, 12, 4, 5, 6, 2, 17, 8, 4],
+            data: [...marks],
             backgroundColor: 'rgb(255, 99, 132)',
-            barThickness: 15,
+            barThickness: 30,
         }]
     }
     const options = {
         responsive: true,
 
     }
+
+    // useEffect(() => {
+    //     const getStudent = async () => {
+    //         const student = await axios.get("http://localhost:4000/api/v1/student/63b9380af8b7ba01208f1aea")
+
+    //         console.log(student.data.product.marks);
+    //         setMarks(student.data.product.marks)
+
+    //     }
+    //     getStudent()
+
+
+    // }, [])
+
 
     return (
         <div >
