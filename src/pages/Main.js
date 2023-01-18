@@ -1,5 +1,7 @@
+
+import { Select } from '@windmill/react-ui'
 import axios from 'axios';
-import { collection, getDocs, query } from 'firebase/firestore';
+
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 
@@ -22,6 +24,8 @@ function Main() {
     const [standard, setStandard] = useState()
     const [student, setStudent] = useState([])
     const [name, setName] = useState()
+    const [outof, setOutOf] = useState([])
+    const [subject, setSubject] = useState("science")
     console.log(username);
 
     useEffect(() => {
@@ -34,27 +38,31 @@ function Main() {
             })
         }
         students()
-    }, [username])
+    }, [])
 
     useEffect(() => {
         const document = []
         const documentDate = []
+        const documentOutof = []
 
         student?.forEach((std) => {
+            if (std.subject == subject) {
+                document.push(std.m)
+                documentOutof.push(std.outof)
 
-            document.push(std.m)
-            const createdAt = std.createdAt.split("T")[0]
+                const createdAt = std.createdAt.split("T")[0]
 
-            documentDate.push(std.subject + ":-" + createdAt)
-
+                documentDate.push(createdAt)
+            }
         })
         console.log(document);
         setMarks(document)
         setDate(documentDate)
+        setOutOf(documentOutof)
 
-    }, [student])
+    }, [subject, student])
 
-    console.log(standard);
+    console.log(subject);
 
 
 
@@ -89,14 +97,14 @@ function Main() {
     //     setModel(false)
     // }
     return (
-        <div className='bg-purple-100 pt-2  h-screen'>
+        <div className='pt-2  h-full pb-10' >
             {/* {model && <div className=" fixed flex h-screen w-full justify-center bg-black bg-opacity-70 items-center"><div className="flex flex-col justify-center h-screen w-11/12  ">
                 <img src='cross.png' className='w-7 mb-3 text-white font-bold ' onClick={removeimg} />
                 <img src={tempimg} alt="" className='w-full' />
             </div></div>
             } */}
-            <div className=" flex h-28 mt-14 justify-between shadow-md shadow-black  bg-purple-500 text-left  p-5 text-white font-bold font-serif text-xl   mx-3  rounded-lg">
-                <h2>Hello {name} <br />Wellcome To Crystal Concept </h2>
+            <div className=" flex h-28 mt-14 justify-between shadow-md shadow-black  bg-purple-500 text-left  p-5 text-white  text-md   mx-3  rounded-lg" style={{ fontFamily: 'Poppins', background: '#00337C' }}>
+                <h1>Hello {name} <br />Welcome To Crystal Concept </h1>
                 <p className='text-white font-semibold '>{standard}</p></div>
             {/* <div className="flex flex-wrap justify-center mx-3 ">
                 <div className="flex items-end justify-center sci w-2/5 h-32 m-3 shadow-md shadow-black bg-purple-500 rounded-md  "><h1 className='font-extraboldbold text-4xl  font-serif mb-2 text-white text-center' >Science</h1></div>
@@ -110,14 +118,22 @@ function Main() {
                         </div>)
                 })} */}
             {/* </div> */}
+            <div className="flex my-3 mx-7 justify-around">
+                <h5 style={{ fontFamily: 'Poppins' }} className="text-lg font-bold">Select subject:</h5>
+                <Select className='w-2/3 h-10' valid onChange={(e) => { setSubject(e.target.value) }}>
+                    <option style={{ fontFamily: 'Poppins' }} value={'science'}>Science</option>
+                    <option style={{ fontFamily: 'Poppins' }} value={'maths'}>Maths</option>
+                    <option style={{ fontFamily: 'Poppins' }} value={'english'}>English</option>
+                    <option style={{ fontFamily: 'Poppins' }} value={'history'}>History</option>
+                    <option style={{ fontFamily: 'Poppins' }} value={'geography'}>Geography</option>
+                </Select></div>
             <div className="flex justify-center">
-                <h1 className=' text-xl font-serif bg-purple-500 px-1 mt-3 rounded-md text-white'>Marks</h1></div>
-            <div className="mx-3 my-3  bg-purple-50 rounded-xl shadow-md shadow-black"><Barchart marks={marks} date={date} /></div>
+                <h1 className=' text-xl font-serif bg-purple-500 px-1 mt-3 rounded-md text-white' style={{ fontFamily: 'Poppins', background: '#00337C' }}>Marks</h1></div>
+            <div className="mx-3 my-3  bg-purple-50 rounded-xl shadow-md shadow-black"><Barchart marks={marks} date={date} outof={outof} /></div>
             <div className="flex justify-center">
-                <h1 className=' text-xl font-serif bg-purple-500 px-1 rounded-md text-white'>Attendance</h1></div>
-            <div className="flex flex-wrap m-3 my-3 bg-purple-50 rounded-xl shadow-md shadow-black justify-center "><Piechart /></div>
+                <h1 className=' text-xl font-serif bg-purple-500 px-1 rounded-md text-white' style={{ fontFamily: 'Poppins', background: '#00337C' }}>Status</h1></div>
+            <div className="flex flex-wrap m-3 my-3 bg-purple-50 rounded-xl shadow-md shadow-black justify-center "><Piechart marks={marks} outof={outof} /></div>
         </div >
     )
 }
-
 export default Main

@@ -5,19 +5,29 @@ import { Pie } from 'react-chartjs-2'
 
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, ArcElement, Tooltip, Legend)
-function Piechart() {
+function Piechart({ marks, outof }) {
+
+    let sum1 = 0
+    let sum2 = 0
+    for (const item of marks) {
+        sum1 += item;
+    }
+    for (const item of outof) {
+        sum2 += item;
+    }
+    console.log(sum1, sum2);
     const data = {
         labels: [
-            'Attended', 'Absent'
+            'Marks', 'Obtain Marks'
 
         ],
 
         datasets: [{
-            label: 'IN Persent',
-            data: [60, 40],
+            label: 'Marks',
+            data: [sum2, sum1],
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 205, 86)',
+                '#132C33',
+                '#00337C',
 
             ],
             hoverOffset: 4

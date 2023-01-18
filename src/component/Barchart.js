@@ -3,13 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
-import axios from 'axios'
-
 
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
-function Barchart({ marks, date, subject }) {
+function Barchart({ marks, date, outof }) {
 
 
 
@@ -22,13 +20,25 @@ function Barchart({ marks, date, subject }) {
         labels: [...date],
         datasets: [{
             label: 'Marks',
+
+            data: [...outof],
+
+            backgroundColor: '#132C33',
+
+            barThickness: 30,
+        }, {
+            label: 'Marks',
+
             data: [...marks],
-            backgroundColor: 'rgb(255, 99, 132)',
+
+            backgroundColor: '#82AAE3',
+
             barThickness: 30,
         }]
     }
     const options = {
         responsive: true,
+
 
     }
 

@@ -7,8 +7,8 @@ function Header() {
 
     const [show, setShow] = useState(false)
     return (
-        <div className='justify-between fixed top-0 shadow-lg flex z-10 sm:flex-row flex-row-reverse  items-center sm:px-12 px-3  h-14 w-full bg-purple-900'>
-            <h1 className='text-white font-serif  mt-4 sm:text-xl text-xl mb-5   font-extrabold'>Crystal Concept Classes</h1>
+        <div className='justify-between fixed top-0 shadow-lg flex z-10 sm:flex-row flex-row-reverse  items-center sm:px-12 px-3  h-14 w-full bg-purple-900' style={{ fontFamily: 'Poppins', background: '#00337C' }}>
+            <h1 className='text-white font-serif  mt-4 sm:text-xl text-xl mb-5   font-extrabold' style={{ fontFamily: 'Poppins' }}>Crystal Concept</h1>
             <div className="sm:hidden flex">
                 <Hamburger size={23} color="#FFFFFF" rounded onToggle={toggled => {
                     if (toggled) {

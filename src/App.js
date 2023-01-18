@@ -5,7 +5,7 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Register from "./pages/Register";
-import Upload from "./pages/Upload";
+
 
 
 
