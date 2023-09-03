@@ -5,6 +5,7 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Register from "./pages/Register";
+import Home from "./pages/Home/Home";
 
 
 
@@ -16,7 +17,8 @@ function App() {
         <Header />
         <Routes>
           <Route exact path='/main' element={< Main />}></Route>
-          <Route exact path='/' element={< Login />}></Route>
+          <Route exact path='/' element={< Home />}></Route>
+          <Route exact path='/login' element={< Login />}></Route>
           <Route exact path='/register' element={< Register />}></Route>
           <Route exact path='/admin' element={< Admin />}></Route>
         </Routes>

@@ -3,7 +3,8 @@ import { Button, Input, Label } from '@windmill/react-ui'
 import { auth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import createNewStudent from '../halper/axios';
+
+import axios from 'axios';
 
 
 
@@ -13,34 +14,36 @@ function Register() {
     const [standard, setStandard] = useState()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [data, setData] = useState({})
+
+    const senddata = async () => {
+        const res = await axios.post("https://crystal-concept-backend.onrender.com/api/v1/student/new", {
+            name,
+            email,
+            "subject": [],
+            standard,
+            "marks": []
+        }).then((data) => {
+            console.log(data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
 
     const register = async (e) => {
-        setData({
-            "name": name,
-            "email": email,
-            "subject": [],
-            "standard": standard,
-            "marks": []
-        })
-
-
-
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-
-                createNewStudent(data)
+                senddata()
                 alert("Created Successfully")
                 navigate('/')
 
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
+
                 const errorMessage = error.message;
                 alert(errorMessage)
                 // ..

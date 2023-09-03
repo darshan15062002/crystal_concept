@@ -127,7 +127,7 @@ function Main() {
                     <option style={{ fontFamily: 'Poppins' }} value={'history'}>History</option>
                     <option style={{ fontFamily: 'Poppins' }} value={'geography'}>Geography</option>
                 </Select></div>
-            <div className="flex justify-center">
+            <div className="flex justify-center align-middle ">
                 <h1 className=' text-xl font-serif bg-purple-500 px-1 mt-3 rounded-md text-white' style={{ fontFamily: 'Poppins', background: '#00337C' }}>Marks</h1></div>
             <div className="mx-3 my-3  bg-purple-50 rounded-xl shadow-md shadow-black"><Barchart marks={marks} date={date} outof={outof} /></div>
             <div className="flex justify-center">
