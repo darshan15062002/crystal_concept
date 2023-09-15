@@ -4,13 +4,12 @@ import { getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAfqhUCuraCCywdBmB0r5IY2Li5kXcMGFY",
-    authDomain: "fir-4574c.firebaseapp.com",
-    projectId: "fir-4574c",
-    storageBucket: "fir-4574c.appspot.com",
-    messagingSenderId: "1053071283939",
-    appId: "1:1053071283939:web:bd168a374db95d0a8557d6",
-    measurementId: "G-7MYFYC3Z9M"
+    apiKey: "AIzaSyCAlcjp10mTNcsrE3IcHqsgNxN8lDwthj8",
+    authDomain: "crystal-concept-d97c8.firebaseapp.com",
+    projectId: "crystal-concept-d97c8",
+    storageBucket: "crystal-concept-d97c8.appspot.com",
+    messagingSenderId: "242205805174",
+    appId: "1:242205805174:web:c46cba98cede6743132d57"
 };
 
 // Initialize Firebase
